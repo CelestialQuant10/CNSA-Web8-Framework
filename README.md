@@ -1,24 +1,30 @@
-# Example: CNSA 2.0 Compliant Key Exchange (CRYSTALS-Kyber)
-# Note: Requires pqclean or similar library; install via pip if available in your environment.
+# CNSA-Web8-Framework
 
-from cryptography.hazmat.primitives import hashes
-from cryptography.hazmat.primitives.asymmetric import kyber  # Assuming pqcrystals-kyber integration
+A quantum-secure framework implementing CNSA 2.0 standards for decentralized digital economies, with Web8-inspired integrations for resilient blockchain applications.
 
-# Generate key pair (Alice)
-alice_pk, alice_sk = kyber.generate_keypair()
+## Overview
+This repository provides tools and examples for integrating NSA's CNSA 2.0 post-quantum cryptography (e.g., CRYSTALS-Kyber, CRYSTALS-Dilithium) into decentralized systems. It supports secure key exchange, signatures, and data integrity in environments like Solana-based economies, addressing quantum threats while enabling efficient, decentralized operations.
 
-# Encapsulate shared secret (Bob)
-ciphertext, shared_secret_bob = kyber.encapsulate(alice_pk)
+## Features
+- Quantum-resistant encryption and key management.
+- Decentralized examples for token transfers and AI agent interactions.
+- Compliance with NIST PQC standards and CNSA migration timelines.
+- Modular design for easy extension to Web8 concepts (e.g., privacy-enhanced networks).
 
-# Decapsulate to retrieve shared secret (Alice)
-shared_secret_alice = kyber.decapsulate(ciphertext, alice_sk)
+## Installation
+1. Clone the repository: `git clone https://github.com/CelestialQuant10/CNSA-Web8-Framework.git`
+2. Install dependencies: `pip install cryptography pqclean` (or equivalent for your environment).
+3. Run examples: `python src/key_exchange.py`
 
-# Verify shared secrets match (for demo)
-assert shared_secret_alice == shared_secret_bob
+## Usage
+See `/examples` for demos, including secure key establishment.
 
-# Derive symmetric key using SHA-384 (CNSA compliant)
-digest = hashes.Hash(hashes.SHA384())
-digest.update(shared_secret_alice)
-symmetric_key = digest.finalize()[:32]  # Truncate to 256 bits for AES-256
+## Documentation
+- CNSA 2.0 Overview: `/docs/cnsa_migration.md`
+- Web8 Concepts: `/docs/web8_integration.md`
 
-print("Symmetric Key (hex):", symmetric_key.hex())
+## License
+MIT License – see LICENSE file for details.
+
+## Contributions
+Pull requests welcome. Focus on quantum security and decentralization.
